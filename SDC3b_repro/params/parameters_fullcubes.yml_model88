@@ -1,0 +1,79 @@
+Abundances:
+  abu_c: 7.1e-07
+  abu_h: 0.926
+  abu_he: 0.074
+BlackBodySource:
+  Teff: 5e4
+  cross_section_pl_index: 2.8
+CGS:
+  albpow: -0.7
+  alcpow: -0.672
+  bh00: 2.59e-13
+  colh0_fact: 1.3e-08
+  eth0: 13.598
+  ethe0: 24.587
+  ethe1: 54.416
+  fh0: 0.83
+  xih0: 1.0
+Cosmology:
+  Omega0: 0.30964
+  Omega_B: 0.04897
+  cmbtemp: 2.7255
+  cosmological: 1
+  h: 0.6766
+  seed: 79042
+  zred_0: 35.372
+Grid:
+  boxsize: 700
+  gpu: 1
+  meshsize: 350
+  mpi: 0
+  ntreads: 8
+  resume: 0
+Material:
+  avg_dens: 1.981e-07
+  temp0: 1e4
+  xh0: 2e-4
+Output:
+  density_basename: /data-archive/sdc/SDC3/inference/model_88/grids/
+  inputs_basename: /data-archive/sdc/SDC3/inference/model_88/
+  logfile: pyC2Ray.log
+  results_basename: /data-archive/sdc/SDC3/inference/model_88/result_pyC2Ray/
+  sources_basename: /data-archive/sdc/SDC3/inference/model_88/sources/
+Photo:
+  NumTau: 2000
+  SourceType: blackbody
+  compute_heating_rates: 0
+  grey: 0
+  maxlogtau: 4
+  minlogtau: -20
+  sigma_HI_at_ion_freq: 6.3e-18
+Raytracing:
+  convergence_fraction: 1e-4
+  loss_fraction: 1e-2
+  max_subbox: 1000
+  source_batch_size: 32
+  subboxsize: 5
+Sinks:
+  A_mfp: 210.0
+  R_max_cMpc: 50.0
+  clumping: 1.02
+  clumping_model: constant
+  eta1_mfp: 9
+  eta_mfp: -9
+  mfp_model: constant
+  z1_mfp: 6.0
+Sources:
+  Nion: 5000.0
+  accretion_model: EXP
+  al_esc: -0.239605
+  alpha_h: 0.339628
+  f0: 0.0820635
+  f0_esc: 0.224732
+  fesc_model: power
+  fgamma_hm: 30
+  fgamma_lm: 0.0
+  fstar_kind: Park2019
+  g1: 0.469372
+  minmass: 10000000000.0
+  mturn: 8.58603
