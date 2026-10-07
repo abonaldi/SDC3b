@@ -1,5 +1,5 @@
 # Dependencies
-SDC3b_repro.yml and SDC3b_repro_packages.txt for the environment used to run the simulations and the full list pf packages, respectively.
+See SDC3b_repro.yml and SDC3b_repro_packages.txt for the environment used to run the simulations and the full list pf packages, respectively.
 
 # Pipeline
 
