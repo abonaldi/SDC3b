@@ -96,7 +96,14 @@ class GridCornerPlotter:
             
             # Create legend handle for the team
             legend_handles.append(mlines.Line2D([], [], color=current_color, label=post['label'], lw=2))
-            
+
+        # corner fixes each 1-D panel's y-range from the first posterior; refit to all of them
+        ndim = len(self.labels)
+        for p in range(ndim):
+            ax = fig.axes[p * (ndim + 1)]
+            ymax = max((np.max(line.get_ydata()) for line in ax.get_lines()), default=1.0)
+            ax.set_ylim(0, 1.1 * ymax)
+
         if self.true_values is not None:
             # Mark true values in gray (lines and points) without adding to legend
             corner.overplot_lines(fig, self.true_values, color="gray", linestyle="--", alpha=0.6)

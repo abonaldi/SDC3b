@@ -37,6 +37,7 @@ The cases are:
 | `config/truth.yml` | True band-centre values and ranges for each case |
 | `sdc3b_tools/` | Loading (`io.py`), corner plots and metrics (`plotting.py`) |
 | `scripts/fetch_posteriors.py` | Download the release data |
+| `notebooks/sdc3b_posteriors_example.ipynb` | Worked example: input histories, corner plots, average posterior, credible intervals, diagnostics |
 | `scripts/build_release.py` | Maintainers: build the release zips from the collected submissions |
 | `../data/truth/` | Simulation outputs: true values and $x_{\rm HI}(z)$ histories |
 

@@ -52,14 +52,20 @@ def _sha256(path):
 def fetch(cases=None, data_dir=None, force=False):
     """Download and unpack the posteriors for `cases` (default: all)."""
     data_dir = Path(data_dir or DATA_DIR)
+    missing = []
+    for case in cases or CASES:
+        if (data_dir / case).is_dir() and not force:
+            print(f'{case}: already present in {data_dir / case}')
+        else:
+            missing.append(case)
+    if not missing:
+        return
+
     cache = data_dir / '_downloads'
     cache.mkdir(parents=True, exist_ok=True)
     sums = _checksums(cache)
 
-    for case in cases or CASES:
-        if (data_dir / case).is_dir() and not force:
-            print(f'{case}: already present in {data_dir / case}')
-            continue
+    for case in missing:
         name = f'SDC3b_posteriors_{case}.zip'
         zip_path = cache / name
         if not zip_path.exists() or _sha256(zip_path) != sums[name]:

@@ -4,9 +4,9 @@ See SDC3b_repro.yml and SDC3b_repro_packages.txt for the environment used to run
 # Pipeline
 
 1) run 21cmFAST to generate the density and emissivity fields, and the 21cm signal for 21cmFAST (Simulator 2)   
-3) if using, run pyC2ray to generate the 21cm signal for pyc2ray (Simulator 1)
-4) produce physical lightcones from the outputs of the simulators with run_lightcones.py
-5) produce observed lightcones with run_obslc.py
+2) if using, run pyC2ray to generate the 21cm signal for pyc2ray (Simulator 1)
+3) produce physical lightcones from the outputs of the simulators with run_lightcones.py
+4) produce observed lightcones with run_obslc.py
 
 # Full calling sequence
 
