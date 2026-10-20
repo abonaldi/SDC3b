@@ -20,7 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sdc3b_tools.io import CASES, DATA_DIR  # noqa: E402
 
-RELEASE_TAG = 'v1.0'
+RELEASE_TAG = 'v0.1'
 RELEASE_URL = f'https://github.com/abonaldi/SDC3b/releases/download/{RELEASE_TAG}'
 
 
