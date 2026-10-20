@@ -1,0 +1,19 @@
+PS3 model_33
+freq boundary      151.000      165.900
+z boundary exact      8.40662      7.56178
+z boundary      8.46100      7.56900
+min,max xh     0.875093     0.666184
+centre,width xh     0.770638     0.208909
+******
+freq boundary      166.000      180.900
+z boundary exact      7.55663      6.85185
+z boundary      7.56900      6.91700
+min,max xh     0.666184     0.382432
+centre,width xh     0.524308     0.283752
+******
+freq boundary      181.000      195.900
+z boundary exact      6.84751      6.25064
+z boundary      6.91700      6.31400
+min,max xh     0.382432     0.105936
+centre,width xh     0.244184     0.276496
+******

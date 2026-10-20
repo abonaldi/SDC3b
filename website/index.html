@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDC3b Results</title>
+<meta name="description" content="Posterior distributions of the neutral hydrogen fraction submitted to the SKA Data Challenge 3b, with comparison metrics and data downloads.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark">SDC3b</span>
+      <span class="brand-sub">SKA Data Challenge 3b · Results</span>
+    </a>
+    <nav class="header-links">
+      <a href="https://github.com/abonaldi/SDC3b" target="_blank" rel="noopener">Code</a>
+      <a href="https://github.com/abonaldi/SDC3b/releases" target="_blank" rel="noopener">Data</a>
+      <a href="https://sdc3.skao.int/" target="_blank" rel="noopener">Challenge</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>Inferring the reionization history from simulated SKA-Low data</h1>
+    <p>
+      Teams in the SKA Data Challenge 3b inferred the volume-averaged neutral hydrogen
+      fraction <i>x</i><sub>HI</sub> in three frequency bands (151–166, 166–181 and 181–196&nbsp;MHz)
+      from simulated 21-cm power spectra (PS1–PS3) and an image cube (IM1).
+      Each submission is a 3-D posterior grid <i>P</i>(<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, <i>x</i><sub>3</sub>).
+      This site lets you compare the submitted posteriors with the true input values.
+    </p>
+    <p>
+      The aim is to learn where and why the inferences differ from the input, so that methods and future challenges
+      can be improved. The results are not a ranking of teams: no single number captures the quality of a posterior,
+      and the challenge setup itself has limitations discussed in the paper.
+    </p>
+  </section>
+
+  <section class="toolbar" aria-label="Dataset">
+    <div class="segmented" id="case-switch" role="tablist" aria-label="Dataset"></div>
+    <p class="case-info" id="case-info"></p>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="View">
+    <button role="tab" data-tab="corner" aria-selected="true">Posteriors</button>
+    <button role="tab" data-tab="intervals" aria-selected="false">Credible intervals</button>
+    <button role="tab" data-tab="metrics" aria-selected="false">Metrics</button>
+    <button role="tab" data-tab="data" aria-selected="false">Data &amp; citation</button>
+  </nav>
+
+  <!-- Corner plot -->
+  <section class="panel" id="panel-corner" role="tabpanel">
+    <div class="corner-layout">
+      <aside class="controls">
+        <div class="control-block">
+          <div class="control-head">
+            <span>Teams <span class="count" id="team-count">0</span></span>
+            <span class="link-group">
+              <button class="link" id="sel-all">All</button>
+              <button class="link" id="sel-none">None</button>
+            </span>
+          </div>
+          <input type="search" id="team-search" class="search" placeholder="Filter teams…" aria-label="Filter teams">
+          <ul class="team-list" id="team-list"></ul>
+        </div>
+        <div class="control-block">
+          <div class="control-head"><span>Display</span></div>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" id="lvl-68" checked> 68%</label>
+            <label class="chip"><input type="checkbox" id="lvl-95" checked> 95%</label>
+            <label class="chip"><input type="checkbox" id="lvl-99"> 99.7%</label>
+          </div>
+          <label class="toggle"><input type="checkbox" id="opt-fill" checked> Filled contours</label>
+          <label class="toggle"><input type="checkbox" id="opt-truth" checked> True band-centre values</label>
+          <label class="toggle"><input type="checkbox" id="opt-range" checked> True range in each band</label>
+        </div>
+      </aside>
+      <div class="plot-area">
+        <div id="corner-plot" class="corner-plot"></div>
+        <p class="empty" id="corner-empty" hidden>Select one or more teams to plot their posteriors.</p>
+        <p class="caption">
+          Diagonal: 1-D marginal posteriors, scaled to unit peak. Off-diagonal: 2-D marginals with highest-density
+          credible regions. Dashed lines and stars mark the true <i>x</i><sub>HI</sub> at the band centres; the grey
+          shading spans the true <i>x</i><sub>HI</sub> over each band.
+          Use the camera icon to save the figure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credible intervals -->
+  <section class="panel" id="panel-intervals" role="tabpanel" hidden>
+    <div id="interval-plot"></div>
+    <p class="caption">
+      Boxes show the 68% and whiskers the 95% equal-tailed credible intervals of the 1-D marginals; markers are the
+      marginal medians. The dashed line is the true band-centre value and the shaded area the true range over the band.
+    </p>
+  </section>
+
+  <!-- Metrics -->
+  <section class="panel" id="panel-metrics" role="tabpanel" hidden>
+    <div class="panel-head">
+      <p class="muted">Teams are listed in the same order as in the paper.</p>
+      <button class="button" id="csv-btn">Download CSV</button>
+    </div>
+    <div class="table-wrap">
+      <table class="metrics" id="metrics-table"></table>
+    </div>
+    <p class="note">
+      These quantities are diagnostics, each describing one aspect of how a posterior relates to the input values
+      (offset, width, shape). They are meant to help understand the results, not to rank the teams.
+    </p>
+    <dl class="defs">
+      <dt><i>Z<sub>p</sub></i></dt>
+      <dd>|mean − true value| / σ of the marginal posterior in band <i>p</i>: the offset from the input in units of the posterior width.</dd>
+      <dt><i>D</i><sub>M</sub></dt>
+      <dd>Mahalanobis distance of the true values from the posterior mean, using the full 3×3 posterior covariance.</dd>
+      <dt><i>S</i><sub>SDC3b</sub></dt>
+      <dd>Fraction of the posterior mass inside the cuboid spanned by the true <i>x</i><sub>HI</sub> range of each band, as defined for the challenge.</dd>
+    </dl>
+  </section>
+
+  <!-- Data -->
+  <section class="panel prose" id="panel-data" role="tabpanel" hidden>
+    <h2>Download the posteriors</h2>
+    <p>
+      The posterior grids are attached to the
+      <a href="https://github.com/abonaldi/SDC3b/releases" target="_blank" rel="noopener">GitHub release</a>
+      of the SDC3b repository, one zip file per dataset:
+    </p>
+    <ul class="downloads" id="download-list"></ul>
+    <p>Or fetch and unpack all of them with</p>
+    <pre><code>git clone https://github.com/abonaldi/SDC3b.git
+cd SDC3b
+pip install -r analysis/requirements.txt
+python analysis/scripts/fetch_posteriors.py</code></pre>
+
+    <h2>File format</h2>
+    <p>
+      Each file <code>&lt;team&gt;_&lt;dataset&gt;.fits</code> holds a 100×100×100 grid of the posterior probability
+      over (<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, <i>x</i><sub>3</sub>), with cell centres at
+      <i>x</i><sub>HI</sub> = 0.005, 0.015, …, 0.995. When read with astropy, numpy axis 0 is <i>x</i><sub>1</sub>
+      (151–166&nbsp;MHz). All grids are normalised to unit sum; submissions that were not normalised have been normalised.
+    </p>
+    <pre><code>import sys; sys.path.insert(0, 'analysis')
+import sdc3b_tools as st
+
+posteriors, coords = st.load_case('PS1')   # [(team, grid), ...], cell centres
+truth = st.load_truth('PS1')               # band-centre values and ranges</code></pre>
+
+    <h2>Datasets</h2>
+    <table class="simple">
+      <thead><tr><th>Dataset</th><th>Content</th><th>Input simulation</th></tr></thead>
+      <tbody id="dataset-table"></tbody>
+    </table>
+    <p>Posteriors are shown for all teams that agreed to the public release of their submissions.</p>
+
+    <h2>Citation</h2>
+    <p>If you use these results, please cite the SDC3b paper (reference to be added on publication).</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    SKA Data Challenge 3b · Data generated <span id="generated"></span> ·
+    <a href="https://github.com/abonaldi/SDC3b/tree/main/website" target="_blank" rel="noopener">Source of this site</a>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

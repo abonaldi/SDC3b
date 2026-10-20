@@ -1,0 +1,27 @@
+# True neutral fraction of the SDC3b input simulations, per frequency band.
+# Source: True_values{PS1,PS2,PS3}.txt produced with the SDC3b_repro pipeline.
+#   xhi_centre : x_HI at the centre of the band (x' in the paper)
+#   xhi_range  : [min, max] x_HI over the band ([a', b'] in the paper),
+#                defines the truth cuboid used by the SDC3b score.
+# IM1 is the image cube whose power spectrum is PS3, so it shares PS3's truth.
+
+bands:
+  z1: {freq_MHz: [151.0, 165.9], z: [8.461, 7.569]}
+  z2: {freq_MHz: [166.0, 180.9], z: [7.569, 6.917]}
+  z3: {freq_MHz: [181.0, 195.9], z: [6.917, 6.314]}
+
+cases:
+  PS1:
+    model: model_88
+    xhi_centre: [0.699600, 0.401250, 0.125250]
+    xhi_range:  [[0.571700, 0.827500], [0.230800, 0.571700], [0.019700, 0.230800]]
+  PS2:
+    model: model_72
+    xhi_centre: [0.911173, 0.811154, 0.647652]
+    xhi_range:  [[0.873000, 0.949345], [0.749307, 0.873000], [0.545997, 0.749307]]
+  PS3:
+    model: model_33
+    xhi_centre: [0.770638, 0.524308, 0.244184]
+    xhi_range:  [[0.666184, 0.875093], [0.382432, 0.666184], [0.105936, 0.382432]]
+  IM1:
+    same_as: PS3
