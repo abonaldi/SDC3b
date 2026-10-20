@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+pandas
+astropy
+pyyaml
+corner
+getdist
+jupyter

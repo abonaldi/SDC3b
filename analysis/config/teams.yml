@@ -1,0 +1,35 @@
+# Submissions per team, as labelled in the SDC3b paper.
+#   name   : display label used in figures, tables and the website
+#   stem   : file stem; the posterior for case C is <stem>_<C>.fits
+#   cases  : datasets submitted
+#   public : false keeps the entry out of the public release and website
+#            (pending consent from the team)
+# Order here is the order used in plots and tables.
+
+teams:
+  - {name: 21 To Infinities,            stem: 21_To_Infinities,           cases: [PS1, PS2], public: false}
+  - {name: Akashganga,                  stem: Akashganga,                 cases: [PS1, PS2], public: true}
+  - {name: Cantabrigians,               stem: Cantabrigians,              cases: [PS1, PS2], public: true}
+  - {name: COTSS-21,                    stem: COTSS-21,                   cases: [PS1, PS2], public: true}
+  - {name: EoR PIE MC,                  stem: EoR-PIE-MC,                 cases: [PS1, PS2], public: true}
+  - {name: EoR PIE,                     stem: EoR-PIE,                    cases: [PS1, PS2], public: true}
+  - {name: HIMALAYA,                    stem: HIMALAYA,                   cases: [PS1, PS2, PS3, IM1], public: true}
+  - {name: HIstorians ANN,              stem: HIstorians_ANN,             cases: [PS1, PS2], public: true}
+  - {name: HIstorians GPR,              stem: HIstorians_GPR,             cases: [PS1, PS2], public: true}
+  - {name: HIstorians LCDM Bayesian,    stem: HIstorians_LCDM-Bayesian,   cases: [PS1, PS2], public: true}
+  - {name: Imperial-Nottingham,         stem: Imperial-Nottingham,        cases: [PS1, PS2], public: true}
+  - {name: KUSANAGI,                    stem: KUSANAGI,                   cases: [PS1, PS2], public: true}
+  - {name: Loreli A,                    stem: LoreliA,                    cases: [PS1, PS2], public: true}
+  - {name: Loreli B,                    stem: LoreliB,                    cases: [PS1, PS2], public: true}
+  - {name: ReionYuga,                   stem: ReionYuga,                  cases: [PS1, PS2], public: true}
+  - {name: RISE,                        stem: RISE,                       cases: [PS1, PS2], public: true}
+  - {name: Modern SEarCH,               stem: Modern_SEarCH,              cases: [PS1, PS2, PS3], public: true}
+  - {name: Traditional SEarCH,          stem: Traditional_SEarCH,         cases: [PS1, PS2, PS3], public: true}
+  - {name: SegU-Net SEarCH,             stem: SegU-Net_SEarCH,            cases: [IM1], public: true}
+  - {name: Shuimu-Tianlai A,            stem: Shuimu-Tianlai-A,           cases: [PS1, PS2], public: true}
+  - {name: Shuimu-Tianlai B,            stem: Shuimu-Tianlai-B,           cases: [PS1, PS2], public: true}
+  - {name: Shuimu-Tianlai C,            stem: Shuimu-Tianlai-C,           cases: [PS1, PS2], public: true}
+  - {name: ToSKA - Explicit likelihood, stem: ToSKA-Explicit_likelihood,  cases: [PS1, PS2], public: true}
+  - {name: ToSKA - Model Selection,     stem: ToSKA-SBI_focused,          cases: [PS1, PS2], public: true}
+  - {name: ToSKA - SBI general,         stem: ToSKA-SBI_general,          cases: [PS1, PS2], public: true}
+  - {name: YEYE,                        stem: YEYE,                       cases: [PS1, PS2, PS3, IM1], public: true}

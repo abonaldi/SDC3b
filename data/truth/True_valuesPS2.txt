@@ -1,0 +1,19 @@
+PS2 model_72
+freq boundary      151.000      165.900
+z boundary exact      8.40662      7.56178
+z boundary      8.46100      7.56900
+min,max xh     0.949345     0.873000
+centre,width xh     0.911173    0.0763450
+******
+freq boundary      166.000      180.900
+z boundary exact      7.55663      6.85185
+z boundary      7.56900      6.91700
+min,max xh     0.873000     0.749307
+centre,width xh     0.811154     0.123693
+******
+freq boundary      181.000      195.900
+z boundary exact      6.84751      6.25064
+z boundary      6.91700      6.31400
+min,max xh     0.749307     0.545997
+centre,width xh     0.647652     0.203310
+******
