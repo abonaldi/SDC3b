@@ -1,6 +1,6 @@
 # SDC3b
 
-Scripts used to generate the simulated data of the third SKA Data Challenge, part b (SDC3b), and to analyse the results submitted by the participating teams.
+Scripts used to generate the simulated data of the SKA Data Challenge 3b (SDC3b), and to analyse the results submitted by the participating teams.
 
 Results website: <https://abonaldi.github.io/SDC3b/>
 
