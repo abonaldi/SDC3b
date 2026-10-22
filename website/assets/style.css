@@ -101,6 +101,21 @@ code, pre { font-family: var(--mono); font-size: 13px; }
 }
 .intro p { color: var(--muted); margin: 0; }
 .intro p + p { margin-top: 10px; }
+
+.repo-card {
+  display: flex; align-items: center; gap: 14px; margin-top: 18px;
+  padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); color: var(--fg); box-shadow: var(--shadow);
+}
+.repo-card:hover { text-decoration: none; border-color: var(--accent); }
+.repo-icon { width: 26px; height: 26px; flex-shrink: 0; color: var(--fg); }
+.repo-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; font-size: 14px; }
+.repo-text span { color: var(--muted); }
+.repo-url { font-weight: 600; font-size: 14px; color: var(--accent); white-space: nowrap; }
+@media (max-width: 600px) {
+  .repo-card { flex-wrap: wrap; }
+  .repo-url { width: 100%; padding-left: 40px; }
+}
 .note { color: var(--muted); font-size: 14px; margin: 16px 0 0; max-width: 820px; }
 
 /* Dataset switch */
