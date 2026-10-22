@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SDC3b Results</title>
-<meta name="description" content="Posterior distributions of the neutral hydrogen fraction submitted to the SKA Data Challenge 3b, with comparison metrics and data downloads.">
+<meta name="description" content="Posterior distributions of the neutral hydrogen fraction submitted to the SKA Science Data Challenge 3b, with comparison metrics and data downloads.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script>
 </head>
@@ -17,8 +17,10 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="#">
-      <span class="brand-mark">SDC3b</span>
-      <span class="brand-sub">SKA Data Challenge 3b · Results</span>
+      <!-- SKAO logo: add assets/skao-logo.png once its use is approved, then uncomment:
+      <img class="brand-logo" src="assets/skao-logo.png" alt="SKAO" width="92" height="28"> -->
+      <span class="brand-mark">SKA SDC3</span>
+      <span class="brand-sub">Results of the Inference Challenge</span>
     </a>
     <nav class="header-links">
       <a href="https://github.com/abonaldi/SDC3b" target="_blank" rel="noopener">GitHub</a>
@@ -32,16 +34,17 @@
   <section class="intro">
     <h1>Inferring the reionization history from simulated SKA-Low data</h1>
     <p>
-      Teams in the SKA Data Challenge 3b inferred the volume-averaged neutral hydrogen
-      fraction <i>x</i><sub>HI</sub> in three frequency bands (151–166, 166–181 and 181–196&nbsp;MHz)
-      from simulated 21-cm power spectra (PS1–PS3) and an image cube (IM1).
+      Teams in the SKA Science Data Challenge 3b inferred the volume-averaged neutral hydrogen
+      fraction (<i>x</i><sub>HI</sub>) in three frequency bands (151–166, 166–181 and 181–196&nbsp;MHz)
+      from 21-cm power spectra (PS1–PS3) and an image cube (IM1) derived from simulated observations with SKA-Low.
       Each submission is a 3-D posterior grid <i>P</i>(<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, <i>x</i><sub>3</sub>).
-      This site lets you compare the submitted posteriors with the true input values.
+      This website lets you compare the submitted posteriors with the true input values.
     </p>
     <p>
-      The aim is to learn where and why the inferences differ from the input, so that methods and future challenges
-      can be improved. The results are not a ranking of teams: no single number captures the quality of a posterior,
-      and the challenge setup itself has limitations discussed in the paper.
+      The aim of this challenge is to understand where and why the inferred posteriors differ from the input values, so that the
+      teams can refine their methods as they prepare for the real SKA-Low observations of the Epoch of Reionization.
+      The comparison is therefore not a ranking: each diagnostic captures only one aspect of a posterior, and the
+      differences between submissions are what we learn from.
     </p>
     <a class="repo-card" href="https://github.com/abonaldi/SDC3b" target="_blank" rel="noopener">
       <svg class="repo-icon" width="26" height="26" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -142,14 +145,14 @@
   <section class="panel prose" id="panel-data" role="tabpanel" hidden>
     <h2>Code and notebooks</h2>
     <p>
-      Everything behind this site is in the
+      Everything behind this website is in the
       <a href="https://github.com/abonaldi/SDC3b" target="_blank" rel="noopener">SDC3b GitHub repository</a>:
     </p>
     <ul class="downloads">
       <li><a href="https://github.com/abonaldi/SDC3b/tree/main/SDC3b_repro" target="_blank" rel="noopener"><code>SDC3b_repro/</code></a> · scripts that generated the 21-cm signal of the challenge datasets</li>
       <li><a href="https://github.com/abonaldi/SDC3b/tree/main/analysis" target="_blank" rel="noopener"><code>analysis/</code></a> · Python tools to load the posteriors, make corner and credible-interval plots and compute the diagnostics</li>
       <li><a href="https://github.com/abonaldi/SDC3b/blob/main/analysis/notebooks/sdc3b_posteriors_example.ipynb" target="_blank" rel="noopener"><code>sdc3b_posteriors_example.ipynb</code></a> · worked example for any dataset</li>
-      <li><a href="https://github.com/abonaldi/SDC3b/tree/main/website" target="_blank" rel="noopener"><code>website/</code></a> · source of this site</li>
+      <li><a href="https://github.com/abonaldi/SDC3b/tree/main/website" target="_blank" rel="noopener"><code>website/</code></a> · source of this website</li>
     </ul>
 
     <h2>Download the posteriors</h2>
@@ -192,8 +195,8 @@ truth = st.load_truth('PS1')               # band-centre values and ranges</code
 
 <footer class="site-footer">
   <div class="wrap">
-    SKA Data Challenge 3b · Data generated <span id="generated"></span> ·
-    <a href="https://github.com/abonaldi/SDC3b/tree/main/website" target="_blank" rel="noopener">Source of this site</a>
+    SKA Science Data Challenge 3b · Data generated <span id="generated"></span> ·
+    <a href="https://github.com/abonaldi/SDC3b/tree/main/website" target="_blank" rel="noopener">Source of this website</a>
   </div>
 </footer>
 
