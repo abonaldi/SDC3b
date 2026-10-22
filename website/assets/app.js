@@ -87,12 +87,15 @@ const PLOT_CONFIG = {
 
 /* ---------- data loading ---------- */
 
+// Set by the Pages workflow (<html data-build="...">) so browsers fetch fresh data after each deploy.
+const BUILD = document.documentElement.dataset.build;
+
 function loadData(key) {
   window.SDC3B_DATA = window.SDC3B_DATA || {};
   if (window.SDC3B_DATA[key]) return Promise.resolve(window.SDC3B_DATA[key]);
   return new Promise((resolve, reject) => {
     const el = document.createElement('script');
-    el.src = `data/${key}.js`;
+    el.src = `data/${key}.js${BUILD ? `?v=${BUILD}` : ''}`;
     el.onload = () => window.SDC3B_DATA[key] ? resolve(window.SDC3B_DATA[key]) : reject(new Error(`${el.src} is empty`));
     el.onerror = () => reject(new Error(`Could not load ${el.src}`));
     document.head.appendChild(el);
