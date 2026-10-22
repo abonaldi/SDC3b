@@ -122,8 +122,17 @@ function readHash() {
   if (TABS.includes(t)) state.tab = t;
 }
 
+// The address stays plain (…/SDC3b/) until the visitor picks a dataset or tab;
+// after that it records the view, e.g. #PS3/corner, so it can be linked.
 function writeHash() {
   history.replaceState(null, '', `#${state.caseName}/${state.tab}`);
+}
+
+function followHash() {
+  const [c, t] = [state.caseName, state.tab];
+  readHash();
+  if (state.tab !== t) selectTab(state.tab, false);
+  if (state.caseName !== c) selectCase(state.caseName, false);
 }
 
 /* ---------- static parts ---------- */
@@ -179,9 +188,9 @@ function buildChrome() {
 
 function current() { return state.cases[state.caseName]; }
 
-async function selectCase(c) {
+async function selectCase(c, updateUrl = true) {
   state.caseName = c;
-  writeHash();
+  if (updateUrl) writeHash();
   document.querySelectorAll('#case-switch button').forEach(b =>
     b.setAttribute('aria-selected', String(b.dataset.case === c)));
   const data = await loadCase(c);
@@ -191,9 +200,9 @@ async function selectCase(c) {
   scheduleRender();
 }
 
-function selectTab(tab) {
+function selectTab(tab, updateUrl = true) {
   state.tab = tab;
-  writeHash();
+  if (updateUrl) writeHash();
   document.querySelectorAll('.tabs button').forEach(b =>
     b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
   TABS.forEach(t => { $(`panel-${t}`).hidden = t !== tab; });
@@ -489,6 +498,7 @@ function downloadCSV() {
   }
   readHash();
   buildChrome();
-  selectTab(state.tab);
-  await selectCase(state.caseName);
+  window.addEventListener('hashchange', followHash);
+  selectTab(state.tab, false);
+  await selectCase(state.caseName, false);
 })();
