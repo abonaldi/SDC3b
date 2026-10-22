@@ -29,6 +29,19 @@ jobs:
       - name: Check that the site data is present
         run: test -f website/data/index.js
 
+      # Version the asset URLs with the commit, so browsers do not mix cached
+      # files from an earlier deploy with the new page.
+      - name: Stamp asset URLs with the commit
+        run: |
+          v=${GITHUB_SHA::7}
+          sed -i \
+            -e "s|<html lang=\"en\">|<html lang=\"en\" data-build=\"$v\">|" \
+            -e "s|assets/style.css\"|assets/style.css?v=$v\"|" \
+            -e "s|assets/app.js\"|assets/app.js?v=$v\"|" \
+            website/index.html
+          grep -c "?v=$v" website/index.html | grep -qx 2
+          grep -q "data-build=\"$v\"" website/index.html
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
