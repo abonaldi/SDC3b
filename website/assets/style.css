@@ -278,3 +278,6 @@ table.simple th { color: var(--muted); font-weight: 600; }
   .brand-mark { font-size: 20px; }
   .brand-sub { font-size: 15px; flex-basis: 100%; }
 }
+
+.footer-gh { display: inline-flex; vertical-align: -2px; margin-left: 4px; color: var(--muted); }
+.footer-gh:hover { color: var(--fg); }
